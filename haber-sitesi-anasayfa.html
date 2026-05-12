@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haber Sitesi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@400;500;600&display=swap"
+    rel="stylesheet" />
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* CSS root demek tüm sayfa için geçerli olan değişkenleri tanımladığımız yer */
+    :root {
+      --clr-bg: #f5f3ee;
+      --clr-surface: #ffffff;
+      --clr-text: #1a1a18;
+      --clr-muted: #5a5a54;
+      --clr-hint: #8a8a82;
+      --clr-border: rgba(26, 26, 24, 0.12);
+      --clr-accent: #c0392b;
+      --clr-accent-light: #fdf0ee;
+      --clr-ad: #e8e5de;
+      --font-display: 'Merriweather', Georgia, serif;
+      --font-body: 'Source Sans 3', sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ========= WRAPPER ========= */
+    .wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ========= HEADER ========= */
+    .header {
+      background: var(--clr-surface);
+      border-bottom: 2px solid var(--clr-accent);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header__inner {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      height: 64px;
+    }
+
+    /* LOGO */
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      flex-shrink: 0;
+      margin-right: 24px;
+    }
+
+    .logo__mark {
+      width: 40px;
+      height: 40px;
+      background: var(--clr-accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo__mark svg {
+      width: 22px;
+      height: 22px;
+      fill: #fff;
+    }
+
+    /* .class_name {} formatta yazılan şeyler içerisinde stil özellikleri barındrıyor ve html element üzerinden class attribute bu isim eşlenerek kullanılıyor. */
+
+    .logo__text {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--clr-text);
+      letter-spacing: -0.5px;
+    }
+
+    /* NAVIGATION */
+    .navigation {
+      flex: 1;
+    }
+
+    .navigation__list {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .navigation__item {
+      position: relative;
+    }
+
+    .navigation__link {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--clr-muted);
+      text-decoration: none;
+      transition: color 0.18s, background 0.18s;
+      letter-spacing: 0.2px;
+    }
+
+    .navigation__link:hover {
+      color: var(--clr-text);
+      background: var(--clr-bg);
+    }
+
+    .navigation__link--active {
+      color: var(--clr-accent);
+    }
+
+    .navigation__chevron {
+      width: 12px;
+      height: 12px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      transition: transform 0.18s;
+    }
+
+    .navigation__item:hover .navigation__chevron {
+      transform: rotate(180deg);
+    }
+
+    /* Dropdown */
+    .dropdown {
+      display: none;
+      position: absolute;
+      /* bir nesne üzerinde konumlandırma yapar */
+      top: calc(100% + 4px);
+      /* top: 100% dersek dropdown menü tam olarak navigation linkinin altında başlar, +4px ile biraz boşluk bırakıyoruz */
+      left: 0;
+      background: var(--clr-surface);
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      /*border-radius: kenarlıklarını ovaleştirme*/
+      min-width: 160px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+      /*box-shadow: gölge efekti ekler*/
+      overflow: hidden;
+    }
+
+    .navigation__item:hover .dropdown {
+      display: block;
+    }
+
+    .dropdown__link {
+      display: block;
+      padding: 10px 16px;
+      font-size: 14px;
+      color: var(--clr-muted);
+      /* text-decoration: none; ile bağlantıların alt çizgisini kaldırıyoruz */
+      text-decoration: none;
+      transition: background 0.14s, color 0.14s;
+    }
+
+     /* hover efekti: bir nesne üzerine gelindiğinde uygulanır */
+    .dropdown__link:hover {
+      background: var(--clr-bg);
+      color: var(--clr-text);
+    }
+
+    /* SEARCH AREA */
+    .search-area {
+      /* display: flex; ile içindeki elemanları yatayda hizalar */
+      display: flex;
+      /* align-items: center; ile içindeki elemanları dikeyde ortalar */
+      align-items: center;
+      gap: 0;
+      border: 1.5px solid var(--clr-border);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--clr-bg);
+      /* transition: border-color 0.18s; ile border renginin değişimini yumuşatıyoruz */
+      transition: border-color 0.18s;
+    }
+
+    /* inputa odaklanıldığında uygulanır */
+    .search-area:focus-within {
+      border-color: var(--clr-accent);
+    }
+
+    .search-area__input {
+      border: none;
+      background: transparent;
+      padding: 8px 14px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--clr-text);
+      outline: none;
+      width: 180px;
+    }
+
+    .search-area__input::placeholder {
+      color: var(--clr-hint);
+    }
+
+    .search-area__btn {
+      border: none;
+      background: var(--clr-accent);
+      color: #fff;
+      padding: 8px 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.14s;
+    }
+
+    .search-area__btn:hover {
+      background: #a93226;
+    }
+
+    .search-area__btn svg {
+      width: 16px;
+      height: 16px;
+      stroke: #fff;
+      stroke-width: 2;
+      fill: none;
+    }
+
+    /* ========= PAGE LAYOUT ========= */
+    .page-layout {
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 24px;
+      padding: 24px 0 40px;
+    }
+
+    .page-layout__main {
+      min-width: 0;
+    }
+
+    .page-layout__sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* ========= ADVERTISEMENT AREA ========= */
+    .advertisement {
+      background: var(--clr-ad);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--clr-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--clr-hint);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .advertisement--tall {
+      min-height: 280px;
+    }
+
+    .advertisement--medium {
+      min-height: 220px;
+    }
+
+    .advertisement__label {
+      font-size: 11px;
+      color: var(--clr-hint);
+    }
+
+    /* ========= MANŞET AREA ========= */
+    .manset-area {
+      background: var(--clr-surface);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--clr-border);
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--clr-accent);
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 2px solid var(--clr-accent);
+      display: inline-block;
+    }
+
+    .manset-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* MANŞET ITEM */
+    .manset-item {
+      border-radius: var(--radius-md);
+      /* overflow: hidden; ile içeriğin taşmasını engelleriz */
+      overflow: hidden;
+      border: 1px solid var(--clr-border);
+      cursor: pointer;
+      /*transition geçiş işleminin ne kadar süreceği söylenir.*/
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .manset-item:hover {
+      /* transform: translateY(-5px); ile hover durumunda kartın biraz yukarı hareket etmesini sağlıyoruz */
+      transform: translateY(-5px);
+      /* box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); ile hover durumunda kartın gölge efektini artırarak daha belirgin hale getiriyoruz */
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .manset-item__image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #ddd 0%, #ccc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .manset-item__image svg {
+      width: 28px;
+      height: 28px;
+      stroke: #aaa;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .manset-item__body {
+      padding: 10px;
+      background: var(--clr-surface);
+    }
+
+    .manset-item__title {
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.4;
+      color: var(--clr-text);
+    }
+
+    /* PAGINATION */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 16px;
+    }
+
+    .pagination__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: var(--clr-border);
+      cursor: pointer;
+      transition: background 0.18s, transform 0.18s;
+      padding: 0;
+    }
+
+    .pagination__dot:hover {
+      background: var(--clr-muted);
+    }
+
+    .pagination__dot--active {
+      background: var(--clr-accent);
+      /* transform: scale(1.3); ile aktif noktanın boyutunu artırıyoruz */
+      transform: scale(1.3);
+    }
+
+    /* ========= DÖVİZ KUR BOX ========= */
+    .doviz-kur-box {
+      background: var(--clr-text);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+    }
+
+    /* DÖVİZ ITEM */
+    .doviz-item {
+
+      display: flex;
+      /* flex-direction: column; ile içindeki elemanları dikeyde hizalarız */
+      /*span oldukları için yan yana gelirler ama biz her bir döviz-item içindeki elemanları alt alta getirmek istiyoruz o zaman flex-direction: column; kullanıyoruz */
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .doviz-item__name {
+      font-size: 11px;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.5);
+      /* text-transform: uppercase; ile döviz isimlerini büyük harfe çeviriyoruz */
+      text-transform: uppercase;
+      /* letter-spacing: 0.6px; ile döviz isimleri arasına biraz boşluk ekleyerek okunabilirliği artırıyoruz */
+      letter-spacing: 0.6px;
+    }
+
+    .doviz-item__value {
+      font-family: var(--font-display);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .doviz-item__change {
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .doviz-item__change--up {
+      color: #2ecc71;
+    }
+
+    .doviz-item__change--down {
+      color: #e74c3c;
+    }
+
+    /* ========= İLANLAR ========= */
+    .ilanlar-section {
+      background: var(--clr-surface);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--clr-border);
+      margin-bottom: 20px;
+    }
+
+    /* İLANLAR WRAPPER */
+    .ilanlar-wrapper {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    /* İLAN ITEM */
+    .ilan-item {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--clr-border);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.18s, box-shadow 0.18s;
+    }
+
+    .ilan-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    }
+
+    .ilan-item__photo {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #e8e5de 0%, #d5d1c8 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ilan-item__photo svg {
+      width: 24px;
+      height: 24px;
+      stroke: #aaa;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    .ilan-item__body {
+      padding: 10px;
+    }
+
+    /* ITEM TITLE & ITEM CONTENT */
+    .item-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--clr-text);
+      margin-bottom: 3px;
+      line-height: 1.4;
+    }
+
+    .item-content {
+      font-size: 12px;
+      color: var(--clr-muted);
+      line-height: 1.5;
+    }
+
+    /* ========= YAZARLAR ========= */
+    .yazarlar-section {
+      background: var(--clr-surface);
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      border: 1px solid var(--clr-border);
+      margin-bottom: 20px;
+    }
+
+    /* YAZARLAR WRAPPER */
+    .yazarlar-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* YAZAR ITEM */
+    .yazar-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      border: 1px solid var(--clr-border);
+      border-radius: var(--radius-md);
+      padding: 14px;
+      cursor: pointer;
+      transition: border-color 0.18s, background 0.18s;
+    }
+
+    .yazar-item:hover {
+      background: var(--clr-bg);
+      border-color: var(--clr-accent);
+    }
+
+    /* YAZAR PHOTO */
+    .yazar-photo {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 2px solid var(--clr-border);
+      background: linear-gradient(135deg, #ddd 0%, #ccc 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .yazar-photo svg {
+      width: 22px;
+      height: 22px;
+      stroke: #aaa;
+      stroke-width: 1.5;
+      fill: none;
+    }
+
+    /* YAZAR CONTENT */
+    .yazar-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .yazar-content__name {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--clr-text);
+      margin-bottom: 3px;
+    }
+
+    .yazar-content__bio {
+      font-size: 12px;
+      color: var(--clr-muted);
+      line-height: 1.45;
+    }
+
+    /* ========= FOOTER ========= */
+    .footer {
+      background: var(--clr-text);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 32px 0 24px;
+    }
+
+    .footer__inner {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 40px;
+      align-items: start;
+      margin-bottom: 20px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* LINK BOX */
+    .link-box {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .link-box a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.16s;
+    }
+
+    .link-box a:hover {
+      color: #fff;
+    }
+
+    /* ADDRESS DIV */
+    .address-div {
+      text-align: center;
+    }
+
+    .address-div__label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-bottom: 6px;
+    }
+
+    .address-div__text {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.5;
+    }
+
+    .footer__copy {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ========= SCROLLBAR ========= */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--clr-bg);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--clr-border);
+      border-radius: 3px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========= HEADER ========= -->
+  <div class="header">
+    <div class="wrapper">
+      <div class="header__inner">
+
+        <!-- LOGO -->
+        <a href="#" class="logo">
+          <div class="logo__mark">
+            <svg viewBox="0 0 24 24">
+              <path d="M4 4h16v3H4zM4 10h10v2H4zM4 15h12v2H4z" />
+            </svg>
+          </div>
+          <span class="logo__text">Haber</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <div class="navigation" aria-label="Ana menü">
+          <ul class="navigation__list">
+            <li class="navigation__item">
+              <a href="#" class="navigation__link navigation__link--active">Gündem</a>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">
+                Kategoriler
+                <svg class="navigation__chevron" viewBox="0 0 12 12">
+                  <polyline points="2,4 6,8 10,4" />
+                </svg>
+              </a>
+              <!-- DROPDOWN -->
+              <div class="dropdown" role="menu">
+                <a href="#" class="dropdown__link" role="menuitem">Ekonomi</a>
+                <a href="#" class="dropdown__link" role="menuitem">Spor</a>
+                <a href="#" class="dropdown__link" role="menuitem">Kültür-Sanat</a>
+                <a href="#" class="dropdown__link" role="menuitem">Teknoloji</a>
+                <a href="#" class="dropdown__link" role="menuitem">Dünya</a>
+              </div>
+            </li>
+            <li class="navigation__item">
+              <a href="#" class="navigation__link">Yazarlar</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- SEARCH AREA -->
+        <div class="search-area" role="search">
+          <input class="search-area__input" type="text" placeholder="Ara…" aria-label="Haberlerde ara" />
+          <button class="search-area__btn" aria-label="Ara">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.5" y1="16.5" x2="22" y2="22" />
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- /HEADER -->
+
+
+  <!-- ========= HOME PAGE ========= -->
+  <div>
+    <div class="wrapper">
+      <div class="page-layout">
+
+        <!-- ===== MAIN CONTENT ===== -->
+        <div class="page-layout__main">
+
+          <!-- ===== MANŞET AREA ===== -->
+          <div class="manset-area" aria-label="Manşet haberleri">
+            <h2 class="section-title">Manşet</h2>
+
+            <!-- MANŞET GRID -->
+            <div class="manset-grid">
+
+              <!-- MANŞET ITEM -->
+              <div class="manset-item">
+                <div class="manset-item__image" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <line x1="3" y1="21" x2="21" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div class="manset-item__body">
+                  <h3 class="manset-item__title">Haber 1 başlığı buraya gelecek</h3>
+                </div>
+              </div>
+
+              <div class="manset-item">
+                <div class="manset-item__image" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <line x1="3" y1="21" x2="21" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div class="manset-item__body">
+                  <h3 class="manset-item__title">Haber 2 başlığı buraya gelecek</h3>
+                </div>
+              </div>
+
+              <div class="manset-item">
+                <div class="manset-item__image" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <line x1="3" y1="21" x2="21" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div class="manset-item__body">
+                  <h3 class="manset-item__title">Haber 3 başlığı buraya gelecek</h3>
+                </div>
+              </div>
+
+              <div class="manset-item">
+                <div class="manset-item__image" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <line x1="3" y1="21" x2="21" y2="21" />
+                    <line x1="12" y1="17" x2="12" y2="21" />
+                  </svg>
+                </div>
+                <div class="manset-item__body">
+                  <h3 class="manset-item__title">Haber 4 başlığı buraya gelecek</h3>
+                </div>
+              </div>
+
+            </div>
+            <!-- /MANŞET GRID -->
+
+            <!-- PAGINATION -->
+            <div class="pagination" role="tablist" aria-label="Manşet sayfaları">
+              <button class="pagination__dot pagination__dot--active" aria-label="Sayfa 1"
+                aria-selected="true"></button>
+              <button class="pagination__dot" aria-label="Sayfa 2"></button>
+              <button class="pagination__dot" aria-label="Sayfa 3"></button>
+              <button class="pagination__dot" aria-label="Sayfa 4"></button>
+              <button class="pagination__dot" aria-label="Sayfa 5"></button>
+            </div>
+            <!-- /PAGINATION -->
+
+          </div>
+          <!-- /MANŞET AREA -->
+
+
+          <!-- ===== DÖVİZ KUR BOX ===== -->
+          <div class="doviz-kur-box" aria-label="Döviz kurları">
+
+            <!-- DÖVİZ ITEM -->
+            <div class="doviz-item">
+              <span class="doviz-item__name">Dolar</span>
+              <span class="doviz-item__value">45.50</span>
+              <span class="doviz-item__change doviz-item__change--down">%-0.2</span>
+            </div>
+
+            <div class="doviz-item">
+              <span class="doviz-item__name">Euro</span>
+              <span class="doviz-item__value">52.50</span>
+              <span class="doviz-item__change doviz-item__change--down">%-1.5</span>
+            </div>
+
+            <div class="doviz-item">
+              <span class="doviz-item__name">Altın</span>
+              <span class="doviz-item__value">6.900</span>
+              <!-- elemente bir den fazla class stil tanımı yapılabilir.  -->
+              <span class="doviz-item__change doviz-item__change--up">%+1.2</span>
+            </div>
+
+            <div class="doviz-item">
+              <span class="doviz-item__name">Bitcoin</span>
+              <span class="doviz-item__value">80.837</span>
+              <span class="doviz-item__change doviz-item__change--up">%+0.70</span>
+            </div>
+
+          </div>
+          <!-- /DÖVİZ KUR BOX -->
+
+
+          <!-- ===== İLANLAR ===== -->
+          <div class="ilanlar-section" aria-label="İlanlar">
+            <h2 class="section-title">İlanlar</h2>
+
+            <!-- İLANLAR WRAPPER -->
+            <div class="ilanlar-wrapper">
+
+              <!-- İLAN ITEM -->
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <!-- ITEM TITLE -->
+                  <p class="item-title">İlan Başlığı</p>
+                  <!-- ITEM CONTENT -->
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <!-- 2. Satır -->
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+              <div class="ilan-item">
+                <div class="ilan-item__photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <rect x="3" y="3" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="8.5" r="1.5" />
+                    <polyline points="21,15 16,10 5,21" />
+                  </svg>
+                </div>
+                <div class="ilan-item__body">
+                  <p class="item-title">İlan Başlığı</p>
+                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+                </div>
+              </div>
+
+            </div>
+            <!-- /İLANLAR WRAPPER -->
+          </div>
+          <!-- /İLANLAR -->
+
+
+          <!-- ===== YAZARLAR ===== -->
+          <div class="yazarlar-section" aria-label="Yazarlar">
+            <h2 class="section-title">Yazarlar</h2>
+
+            <!-- YAZARLAR WRAPPER -->
+            <div class="yazarlar-wrapper">
+
+              <!-- YAZAR ITEM -->
+              <div class="yazar-item">
+                <!-- YAZAR PHOTO -->
+                <div class="yazar-photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                </div>
+                <!-- YAZAR CONTENT -->
+                <div class="yazar-content">
+                  <p class="yazar-content__name">Ad Soyad</p>
+                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
+                </div>
+              </div>
+
+              <div class="yazar-item">
+                <div class="yazar-photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                </div>
+                <div class="yazar-content">
+                  <p class="yazar-content__name">Ad Soyad</p>
+                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
+                </div>
+              </div>
+
+              <div class="yazar-item">
+                <div class="yazar-photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                </div>
+                <div class="yazar-content">
+                  <p class="yazar-content__name">Ad Soyad</p>
+                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
+                </div>
+              </div>
+
+              <div class="yazar-item">
+                <div class="yazar-photo" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                </div>
+                <div class="yazar-content">
+                  <p class="yazar-content__name">Ad Soyad</p>
+                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
+                </div>
+              </div>
+
+            </div>
+            <!-- /YAZARLAR WRAPPER -->
+          </div>
+          <!-- /YAZARLAR -->
+
+        </div>
+        <!-- /MAIN CONTENT -->
+
+
+        <!-- ===== SIDEBAR ===== -->
+        <div class="page-layout__sidebar" aria-label="Reklam alanı">
+
+          <!-- ADVERTISEMENT AREA -->
+          <div class="advertisement advertisement--tall" aria-label="Reklam alanı 1">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            <span class="advertisement__label">Reklam</span>
+          </div>
+
+          <div class="advertisement advertisement--medium" aria-label="Reklam alanı 2">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            <span class="advertisement__label">Reklam</span>
+          </div>
+
+          <div class="advertisement advertisement--medium" aria-label="Reklam alanı 3">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <rect x="3" y="3" width="18" height="18" rx="2" />
+              <path d="M3 9h18M9 21V9" />
+            </svg>
+            <span class="advertisement__label">Reklam</span>
+          </div>
+
+        </div>
+        <!-- /SIDEBAR (ADVERTISEMENT AREA) -->
+
+      </div>
+    </div>
+  </div>
+  <!-- /HOME PAGE -->
+
+
+  <!-- ========= FOOTER ========= -->
+  <div class="footer" aria-label="Site alt bilgisi">
+    <div class="wrapper">
+      <div class="footer__inner">
+
+        <!-- LINK BOX -->
+        <nav class="link-box" aria-label="Alt menü bağlantıları">
+          <a href="#">Künye</a>
+          <a href="#">Gizlilik Politikası</a>
+          <a href="#">İletişim</a>
+        </nav>
+
+        <!-- ADDRESS DIV -->
+        <div class="address-div">
+          <p class="address-div__label">Adres</p>
+          <address class="address-div__text" style="font-style:normal;">
+            Örnek Mah. Haber Cad. No:1, İstanbul
+          </address>
+        </div>
+
+      </div>
+      <p class="footer__copy">&copy; 2026 Haber Sitesi. Tüm hakları saklıdır.</p>
+    </div>
+  </div>
+  <!-- /FOOTER -->
+
+
+  <script>
+    // Pagination interactivity
+    const dots = document.querySelectorAll('.pagination__dot');
+    dots.forEach((dot, i) => {
+      dot.addEventListener('click', () => {
+        dots.forEach(d => d.classList.remove('pagination__dot--active'));
+        dot.classList.add('pagination__dot--active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>

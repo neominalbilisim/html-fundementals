@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- yorum satırı, h1 sayafa tek olmalı, h2,h3 başlık hiyerarşisine göre kullanılmalı bu yapısal bozukluk google tarafında hoş karşılanmaz -->
+    <h1>Başlık</h1>
+    <h2>Alt Başlık</h2>
+    <h3>Alt Başlık</h3>
+
+    <!-- içerik özgün olmalıdır SEO -->
+    <p style="padding: 5px;">Paragraf</p>
+    <!-- elementlerin kendi içlerinde berlirli stilleri vardır. p elementi margin:16 mergin: bir elementin başka bir elemente olan uzaklığı, dış boşluk, padding: iç boşluk 0: border ise 0 kenarlık verir.  -->
+
+
+    <!-- unordered list, sırasız liste madde işaret imi ile -->
+
+    <ul>
+        <li>Elma</li>
+        <li>Armut</li>
+    </ul>
+
+    <!-- orderedlist , li: list item -->
+
+
+    <ol>
+        <li>İzmir</li>
+        <li>İstanbul</li>
+    </ol>
+
+    <!-- a elementi, sayfalar birbirleri ile bağlamak için var -->
+    <a title="Google'a Git" href="https://www.google.com" target="_blank">Google</a>
+
+    <a title="Google'a Git" href="https://www.facebook.com" target="_blank">Facebook</a>
+
+    <!-- alt satura geçiriz -->
+    <br />
+
+    <!-- CTRL + K + C kısayol shortcut -->
+    <!-- aralarına alt çizgi koyar -->
+    <hr />
+
+    <!--image-->
+    <img src="https://static.vecteezy.com/system/resources/thumbnails/060/843/811/small/close-up-of-raindrops-on-leaves-hd-background-luxury-hd-wallpaper-image-trendy-background-illustration-free-photo.jpg"
+        width="200" height="100" />
+
+    <!-- alıntı için blockqoute -> Quotations -->
+    <blockquote>Platon, "Bilgelik, hayretle başlar."</blockquote>
+    <!-- alıntı vermek önemlidir, çünkü alıntı olduğu için web ortamında ilişkilendirilir. platonun bu lafını aratınca bizim sitemizde görüntülenir ama içeriğin bizim tarafımızdan oluşturulmadığını alıntı olduğunu söylememiz gerekir. Yoksa sitenin SEO'su bozulur. -->
+
+    <!-- span ile bir yazı yan yana getirilebilir. span inline level bir elementtir.  -->
+
+    <!-- p elementi satır satır gider. block level bir elementtir. -->
+
+    <!--span içerisine koyulan tüm elementler aynı stil özelliğe sahip olabilir. margin span uygulanamaz. inline-level elementler margin alamaz. sadece padding alabilir. -->
+
+    <p>
+        <span>Maç Sonucu (GS-KS):</span>
+
+        <span style="color:red; padding: 5px; margin: 10px; border:1px solid green;">
+            <b>GS:</b> <i>3</i>
+            <b>TS:</b> <i>0</i>
+        </span>
+    </p>
+    <p>
+        <span>Maç Sonucu (FB-TS):</span> <span><b>3-1</b></span>
+    </p>
+
+    <!-- Yanyana gelenlere inline level, alt lata gelenlere block level diyoruz. -->
+
+    <b style="color: red;">Bold yazı</b>
+    <i>İtalic Yazı</i>
+    <u>Üstü çizgili yazı</u>
+
+
+    <!-- Kimya için -->
+    CO<sub>2</sub>
+    <!-- Matematik-->
+    X<sup>2</sup>
+
+
+    <!-- division ayraç: sayfadaki içeriğin anlamlı parçalara bölünmesi için vardır -->
+    <!-- footer,sidebar, header,logo, searchbox, conten, navigation -->
+    <div aria-label="Footer" style="background-color: green; color: white; text-align: center; height: 50px;">Footer
+    </div>
+
+
+    <!--cellspacing hücreler arası boşluk -->
+    <!-- cellpadding hücre içi boşluğu -->
+    <!--border kenarlık-->
+    <!--thead table head-->
+    <!--th table header-->
+    <!--td table data-->
+    <!-- tbody içeriğin bulunduğu alan -->
+    <!--tr table row-->
+
+    <!--Table -->
+    <table border="1" cellpadding="10" cellspacing="2">
+        <thead>
+            <th>Ad</th>
+            <th>Soyad</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Mert</td>
+                <td>Alptekin</td>
+            </tr>
+            <tr>
+                <td>Eylem</td>
+                <td>Kaya</td>
+            </tr>
+            <tr>
+                <td>Hasan</td>
+                <td>Çınar</td>
+            </tr>
+            <tr>
+                <td>Hasan</td>
+                <td>Türk</td>
+            </tr>
+            <tr>
+                <td>Meryem</td>
+                <td>Usta</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                Tablo hakkında bilgi
+            </tr>
+        </tfoot>
+    </table>
+
+    <!-- iframe siteye başka bir sitedeki içeriği gömmek için kullanışlı. Ama güvenlik açısında başka domain içeriği terich edilmez. XSS ataklarına açık. JS bilgi hırsızlığı, iframe ile kötü niyetli dolandırıcılık yapan bir site güvenilir bir sitenin için iframe olarak gömülmüş olabilir. Bundan dolayı iframe varsa sadece kendi domainden  -> www.trendyol.com dan içerik alabilir.  -->
+
+    <iframe src="demo.html" height="200" width="300" title="Iframe Example"></iframe>
+
+</body>
+
+</html>

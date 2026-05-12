@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+
+    <!-- css'in 3 farklı kullanım şekli, external css, extenal css yapıları html link olarak ekletilir.  -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <style>
+        body {
+            font-family: "Sofia", sans-serif;
+        }
+
+        /* tablo satırlarının arka plan rengini belirliyoruz, çift numaralı satırlar için */
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        /* tek numaralı satırlar için */
+        tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+
+    <style>
+        /* Genel olarak tüm paragraflar için yazı tipi ailesini belirliyoruz. Arial, Helvetica ve sans-serif gibi yaygın yazı tiplerini kullanarak okunabilirliği artırıyoruz. */
+        /*elementName: element özelliğine göre stil verir */
+        p {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* .className: class özelliğine göre stil verir */
+        /* .paragraph sınıfına sahip tüm elementler için yazı boyutunu 18px, rengini #333 ve satır yüksekliğini 1.6 olarak belirliyoruz. Bu sayede metin daha okunabilir ve göze hoş görünür hale gelir. */
+        .paragraph {
+            font-size: 18px;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* paragraf elementi üzerinde geldiğimde bir stil değişikliği uygulanır */
+        .paragraph:hover {
+            color: #4CAF50;
+            cursor: pointer;
+        }
+
+        /* #idName: id özelliğine göre stil verir */
+        /* #uniqueId id'sine sahip element için özel stil tanımlamaları yapabiliriz. */
+        /* sayfada sadece 1 adet aynı id'ye sahip element bulunabilir */
+        #saveButton {
+            background-color: #4CAF50;
+            /* Yeşil arka plan rengi */
+            color: white;
+            /* Beyaz metin rengi */
+            padding: 10px 20px;
+            /* Düğmenin iç boşlukları */
+            border: none;
+            /* Kenarlık yok */
+            border-radius: 5px;
+            /* Köşeleri yuvarlat */
+            cursor: pointer;
+            /* Fare imlecini el yap */
+        }
+
+        /* *: tüm elementlere stil verir */
+        * {
+            text-align: center;
+            color: blue;
+        }
+
+        /* grouping elements -> bu elementlerden herhangi birisine bir stil uygulanır */
+        /* internal css */
+        h1,
+        h2,
+        p {
+            text-align: center;
+            text-decoration: underline;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- inline css, en çok istenmeyen kullanım budur. html kirletik okunmayı azaltır. dikkatli kullanılmalıdır. diğer css yapılarını ezer.  -->
+    <p style="color:chocolate" class="paragraph">
+        Demo Page
+    </p>
+
+    <div class="paragraph">Div</div>
+
+    <button id="saveButton">Save</button>
+    <!-- birden fazla aynı tasarımı alacak element varsa class kullanılır. id tercih edilmez -->
+    <button id="saveButton">Save</button>
+
+
+    <i class="glyphicon glyphicon-cloud"></i>
+    <i class="glyphicon glyphicon-remove"></i>
+    <i class="glyphicon glyphicon-user"></i>
+    <i class="glyphicon glyphicon-envelope"></i>
+    <i class="glyphicon glyphicon-thumbs-up"></i>
+
+</body>
+
+</html>
