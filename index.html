@@ -2,17 +2,75 @@
 <html lang="en">
 
 <head>
+
+    <!-- meta tagleri sadece ana sayfaya yapmak yeterli değil -->
+    <!-- Yazılan açıklma ve tagler yapılan iş ile site ile alakalı olmalı. -->
+    <!-- karakter set desteği 143.000 karakter seti -->
     <meta charset="UTF-8">
+    <!-- viewport meta tag, mobil cihazlarda sayfanın doğru şekilde görüntülenmesini sağlar -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- sayfa ile ilgili anahtar kelimeler -->
+    <meta name="keywords" content="HTML, CSS, JavaScript">
+
+    <!-- sayfa açıklaması, maksimum 140-160 karakter arasında ideal -->
+    <meta name="description" content="Web tutorials">
+
+    <meta name="author" content="NeoApps">
+
+    <!-- haber sitelerinde 30 saniyede bir sayfa yenilenir -->
+    <meta http-equiv="refresh" content="30">
+
+    <!-- Internet Explorer uyumluluk meta tagı -->
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+    <!-- uygulama adı -->
+    <meta name="application-name" content="Trendyol">
+
+    <meta property="al:ios:app_store_id" content="524362642">
+
     <title>Document</title>
     <!-- sadece index sayfasında sayfaya yüklenir -->
-    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+    <!-- canonical URL  -->
+    <link rel="canonical" href="https://www.neoapps.com/">
+
+    <!-- Canonical URL, arama motorlarına bir sayfanın “asıl / tercih edilen versiyonu budur” demek için     kullanılır. Bu, özellikle aynı içeriğin birden fazla URL üzerinden erişilebilir olduğu durumlarda önemlidir. Örneğin, bir ürün sayfası hem www.trendyol.com/urun/12345 hem de trendyol.com/urun/12345 gibi farklı URL'lerle erişilebilir olabilir. Canonical URL, arama motorlarına hangi URL'nin asıl olduğunu belirtir ve böylece SEO açısından daha iyi sonuçlar elde edilir. -->
+
+
+    <!-- Open Graph meta tagları, sosyal medya platformlarında paylaşılan içeriğin nasıl görüneceğini kontrol eder. Eğer bu etiketler belirtilmezse, sosyal medya platformları sayfanın içeriğini otomatik olarak analiz eder. -->
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Makale Başlığı">
+    <meta property="og:description" content="Makale özeti — en fazla 200 karakter">
+    <meta property="og:image" content="https://site.com/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:url" content="https://site.com/makale/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Makale Başlığı">
+    <meta name="twitter:description" content="Makale özeti — en fazla 200 karakter">
+    <meta name="twitter:image" content="https://site.com/twitter-image.jpg">
+
+    <!-- sosyal medya uygulamaları için ideal ölçü 1200x630 piksel -> görsel boyut  -->
+
+    <!-- robots.txt için meta tagı -->
+    <meta name="robots" content="max-image-preview:large">
+    <!-- robots.txt, arama motoru botlarına sitende hangi alanlara girip giremeyeceklerini söyleyen dosyadır.
+Genelde şu adreste bulunur: https://site.com/robots.txt -->
+
+
+    <!-- site map için meta tagı -> Sitemizin linklerini sakladığımız arama motorlarının yararlandığı bir dosya. -->
+    <meta name="sitemap" content="http://127.0.0.1:5500/sitemap.xml">
+
 </head>
+
 <body>
     <h1>Anasayfa</h1>
-    <a href="01.elements.html" target="_blank">HTML Elements</a>
-    <a href="02.css.html" target="_parent">Css HTML</a>
-    <a href="03.form.html" target="_blank">Html Form Element</a>
-    <a href="04.uygulama.html" target="_blank">Uygulama Sayfası</a>
+    <a href="pages/01.elements.html" target="_blank">HTML Elements</a>
+    <a href="pages/02.css.html" target="_parent">Css HTML</a>
+    <a href="pages/03.form.html" target="_blank">Html Form Element</a>
+    <a href="pages/04.uygulama.html" target="_blank">Uygulama Sayfası</a>
 </body>
+
 </html>
