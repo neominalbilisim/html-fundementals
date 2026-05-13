@@ -95,18 +95,21 @@
             event.preventDefault(); // Formun varsayılan gönderimini engeller
 
             // Form verilerini al
+            // Not -> Inputların value vardır değerler value da tutulur ama diğer elementler textConent vardır. Metinsel ifadeler burada tutulur. Checkbox ve radio buttonlarda ise checked vardır. Seçili olup olmadığını gösterir. Seçili ise true, seçili değilse false döner.
             var name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
             var message = document.getElementById("message").value;
             var subscribe = document.getElementById("subscribe").checked;
             var gender = document.querySelector('input[name="gender"]:checked').value;
 
+            // okunan form değerlerini konsola yazdır
             console.log("Name: " + name);
             console.log("Email: " + email);
             console.log("Message: " + message);
             console.log("Subscribe: " + subscribe);
             console.log("Gender: " + gender);
 
+            // formu doma yakala sonrada temizle
             document.getElementById("form").reset(); // Formu sıfırlar
 
         });

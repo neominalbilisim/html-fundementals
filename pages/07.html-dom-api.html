@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <p>Hello, World!</p>
+    <p>Hello, World2! </p>
+
+    <button id="myButton">Click Me</button>
+
+    <span id="demo"></span>
+
+    <button onclick="document.getElementById('demo').innerHTML = Date()">The time is?</button>
+
+    <!-- <element event="calistirilacakOlanKod() yani function()"></element> -->
+
+    <!-- ikinci versiyon -->
+    <button onclick="displayDate()">The time is?</button>
+
+    <br><br>
+
+
+    <p id="demo">Sayaç</p>
+    <input id="k" type="text" placeholder="Press a key here!">
+
+
+
+
+    <p id="counter">Sayac: 0 <span id="counter-value"></span></p>
+    <button id="counter-btn">Sayaç başlat</button>
+    <button id="counter-btn-iptal">İptal</button>
+
+
+    <!-- js yazabilmek için html dökümanında olmalıdır -->
+
+    <!-- Firefox debugger -> Sağ tık Inspect -> Debugger Tabı  uygulama içerisinde çalışna js değişkenlerin değerleri okunabilir.  -->
+    <!-- chrome debugger -> Inspect -> Source -> Buradan debug edebilirsin -->
+
+    <!-- watch expressions ile o ana ilgili fonsiyon içertisindeki değişkenlerin değerleri izlenebilir -->
+
+    <!-- Firefox console tab ise uygulamada herhangi bir hata durumunda uyarılar gösterilir. -->
+    <script>
+
+        "use strict"; // strict mode, JavaScript'in daha katı kurallar uygulamasını sağlar. Bu modda, bazı hatalar daha erken tespit edilir ve bazı kötü uygulamalar engellenir. Örneğin, bir değişkeni tanımlamadan kullanmaya çalıştığınızda bir hata oluşur.
+
+        // Not: yazılımda satır satır kod inceleyip hataları yakalama olayın debugging denir. Tarayıcıların geliştirici araçlarında bulunan konsol sekmesi, JavaScript hatalarını ve uyarılarını gösterir. Bu araçları kullanarak kodunuzdaki hataları tespit edebilir ve düzeltebilirsiniz.
+
+        // console tabı ile da hataların yönetimini yapıyoruz.
+
+        let counterInterval = 0; // değişken variable boşta
+
+        // eventleri bir element bağlamak için addEventListener kullanılır. addEventListener, bir elemente belirli bir olay türü (örneğin, "click", "keydown", "load" gibi) ve bu olay gerçekleştiğinde çalışacak bir fonksiyon (event handler) eklemek için kullanılır.
+        // iptal butona basıldığında ise sayacı durdur. clearInterval
+        document.getElementById("counter-btn-iptal").addEventListener("click", function () {
+            // clearInterval, setInterval tarafından oluşturulan tekrarlayan işlemi durdurmak için kullanılır. 
+            // setInterval fonksiyonunun döndürdüğü ID'yi kullanarak belirli bir interval'i iptal edebiliriz.
+            // sayaç zamanlamasını sıfırlamak için clear intervAL KULLANIDK.
+
+            console.log("Sayaç iptal edildi.");
+
+            clearInterval(counterInterval);
+        });
+
+
+        // Senaryo -> 
+
+        var counterButton = document.getElementById("counter-btn");
+
+        counterButton.addEventListener("click", function () {
+            var counterValue = document.getElementById("counter-value");
+            var count = 0;
+            // Sayaç sayısını göstermek için counterValue elementinin içeriğini güncelleriz. Başlangıçta 0 olarak ayarlanır.
+            // setInterval, belirli bir zaman aralığında (milisaniye cinsinden) bir fonksiyonu tekrar tekrar çalıştırmak için kullanılır. 
+            // burada her 1000 milisaniyede (1 saniye) count değişkenini artırır ve counterValue elementinin içeriğini günceller.
+            counterInterval = setInterval(function () {
+                count++;
+                // her saniyede güncel değeri göstermek için textContent özelliğini kullanırız.
+                counterValue.textContent = count;
+            }, 1000);
+        });
+
+
+        function displayDate() {
+            // {} süslü parantezler bir kod bloğunu temsil eder. Bir fonksiyonun içindeki kod bloğu, fonksiyon çağrıldığında çalıştırılacak olan kodları içerir.
+            // Birden falza satır kodu çalıştırmak istediğimizde süslü parantezler içine yazabiliriz.
+            document.getElementById("demo").innerHTML = Date();
+        }
+
+        // DOM (Document Object Model) API'si ile HTML elementlerini seçebilir, değiştirebilir ve yönetebiliriz.
+        // burada ilk bulduğu değiştirilir. 
+
+
+
+
+        // butona tıklandığında bir uyarı gösterir ve ilk paragrafın içeriğini değiştirir.
+        // idisine göre element yakaladık.
+        // bu elemente tıklanabilme özelliği ekledik ve tıklandığında çalışacak bir fonksiyon tanımladık.
+        // function belirli bir kod bloğunu çalıştıran bir yapıdır. Burada bir komut çalıştırdık. 
+        document.getElementById("myButton")
+            .addEventListener("click", function () {
+                alert("Button clicked!");
+
+                // JS ile stil değiştirme
+                document.getElementById("demo").style.fontSize = "35px";
+                document.getElementById("demo").style.color = "red";
+
+                // ilk p elementi buldu sonra onun içeriğini değiştirdi.
+                var pElement = document.querySelector("p");
+                // elementin içerisindeki metni değiştirmek için textContent özelliğini kullanırız.
+                pElement.textContent = "DOM API ile değiştirildi!";
+            });
+
+
+
+
+        // Klavyeden bir tuşa basıldığında hangi tuşa basıldığını göstermek için bir event listener ekleyelim.
+        // keydown olayı, bir tuşa basıldığında tetiklenir. event.key özelliği, basılan tuşun değerini verir.
+        // keyup olayı, bir tuş bırakıldığında tetiklenir. keypress olayı ise, bir tuşa basıldığında tetiklenir ancak bazı tuşlar için çalışmaz (örneğin, Shift, Ctrl gibi). 
+
+        const k = document.getElementById("k");
+
+        // Let k listen for keydown
+        // k.addEventListener("keydown", function (event) {
+        //     document.getElementById("demo").innerHTML = "You pressed: " + event.key;
+        // });
+
+        // Genelde HTML oyunlarında çok işe yararlar. 
+
+        // Let k listen for keydown
+        k.addEventListener("keyup", function (event) {
+            document.getElementById("demo").innerHTML = "You keyup: " + event.key;
+        });
+
+
+        // Let in01 listen for keydown, hangi tuşa basıldığını göstermek yerine, sadece "Enter" tuşuna basıldığında bir mesaj göstermek istiyoruz.
+        k.addEventListener("keydown", function (event) {
+            // If event.code was "enter", then display text
+            if (event.code === "Enter") {
+                document.getElementById("demo").innerHTML = "Enter was pressed!";
+            }
+        });
+
+
+        // Not: JS de herhangi bir script sayfasında yazım hatası hata vb birşey varsa, tüm js uygulaması çalışmaz. O yüzden dikkatli olmak gerekir.
+
+        // Add Event Listener to document
+        document.addEventListener("DOMContentLoaded", function () {
+            // sayfanın içerisindeki içerik yüklenemesi
+            alert("The DOM is fully loaded!");
+        });
+
+
+        window.addEventListener("load", function () {
+            // sayfa yüklenmemesi
+            alert("The page is fully loaded!");
+        });
+
+    </script>
+
+
+</body>
+
+</html>
