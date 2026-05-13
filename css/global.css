@@ -1,0 +1,43 @@
+ 
+ 
+ /* renk kodları */
+ 
+ :root {
+      --clr-bg: #f5f3ee;
+      --clr-surface: #ffffff;
+      --clr-text: #1a1a18;
+      --clr-muted: #5a5a54;
+      --clr-hint: #8a8a82;
+      --clr-border: rgba(26, 26, 24, 0.12);
+      --clr-accent: #c0392b;
+      --clr-accent-light: #fdf0ee;
+      --clr-ad: #e8e5de;
+      --font-display: 'Merriweather', Georgia, serif;
+      --font-body: 'Source Sans 3', sans-serif;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 14px;
+    }
+
+    /* arka plan renkleri */
+
+      body {
+        /* genel olarak bir font tanımlaması var */
+      font-family: var(--font-body);
+      /* arkaplan rengi */
+      background: var(--clr-bg);
+      color: var(--clr-text);
+      font-size: 15px;
+      /* satır yüksekliği */
+      line-height: 1.6;
+    }
+
+      *,
+    *::before,
+    *::after {
+      /* after and before elementin öncesinde ve sonrasındaki boşluklara odaklanır. */
+      /* kutu modeli -> eğer padding kaynaklı gereksiz boşluk varsa onları alır. */
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }

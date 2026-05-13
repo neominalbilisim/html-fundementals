@@ -104,6 +104,38 @@
     <i class="glyphicon glyphicon-envelope"></i>
     <i class="glyphicon glyphicon-thumbs-up"></i>
 
+
+    <!-- Button ile Input arasındaki farklar -->
+
+
+    <button disabled>Disabled Button</button>
+
+    <!-- form dışında tasarım amaçlı bir button varsa yukarıdaki , eğer formdan bir değer gönderirsek aşağıdakini kullanalım. -->
+
+    <form>
+        <input type="submit" value="Gönder" />
+    </form>
+
+
+    <!-- uygulama içerisinde image gösterme işlemi relative path -->
+
+    <img src="images/HaberSitesiAnasayfa.png" width="200" height="100" />
+
+
+    <!-- eğer farklı ekran boyutlarında çalışıyorsak bu durumda tek bir formatta resim genel olarak performanslı olmayacaktır. Çünkü mobil bir cihazda farklı çözünürlüklere göre optimize edilmemiş bir resim daha fazla veri tüketebilir. -->
+
+
+    <img src="images/photo-800.jpg" srcset="
+        images/photo-400.jpg 400w,
+        images/photo-800.jpg 800w,
+        images/photo-1200.jpg 1200w
+      " sizes="
+        (max-width: 600px) 100vw,
+        (max-width: 1024px) 50vw,
+        33vw
+      " alt="Responsive image example" />
+
+
 </body>
 
 </html>
