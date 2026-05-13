@@ -12,7 +12,7 @@
     rel="stylesheet" />
 
 
-    <!-- eğer bir klasör altındaysak üst klasördeki bir dosyay gitmek isteiğimiz zaman, ../klasör_adı -->
+  <!-- eğer bir klasör altındaysak üst klasördeki bir dosyay gitmek isteiğimiz zaman, ../klasör_adı -->
 
   <link rel="stylesheet" href="../css/global.css" />
   <style>
@@ -654,8 +654,18 @@
 
 <body>
 
+  <!-- header,section,article,nav,footer,aside -->
+
+  <!-- header: başlık alanı için kullanılır -->
+  <!-- section: içerik bölümü için kullanılır, her farklı içerik bir section olabilir -->
+  <!-- article: içerik içerisindeki tek bir madde için kullanılır (Manset Item,İlan Item) -->
+  <!-- nav: navigasyon alanı için kullanılır -->
+  <!-- footer: alt bilgi alanı için kullanılır -->
+  <!-- aside: ana içeriğe destekleyici içerik için kullanılır (reklam alanları, popüler haberler, sosyal medya bağlantıları gibi) -->
+
+
   <!-- ========= HEADER ========= -->
-  <div class="header" aria-label="Header">
+  <header aria-label="Ana Header">
     <div class="wrapper">
       <div class="header__inner">
 
@@ -670,7 +680,7 @@
         </a>
 
         <!-- NAVIGATION -->
-        <div class="navigation" aria-label="Ana menü">
+        <nav class="navigation" aria-label="Ana menü">
           <ul class="navigation__list">
             <li class="navigation__item">
               <a href="#" class="navigation__link navigation__link--active">Gündem</a>
@@ -683,7 +693,7 @@
                 </svg>
               </a>
               <!-- DROPDOWN -->
-              <div class="dropdown" role="menu">
+              <div class="dropdown" role="menu" aria-label="Açılır Menü">
                 <a href="#" class="dropdown__link" role="menuitem">Ekonomi</a>
                 <a href="#" class="dropdown__link" role="menuitem">Spor</a>
                 <a href="#" class="dropdown__link" role="menuitem">Kültür-Sanat</a>
@@ -695,383 +705,383 @@
               <a href="#" class="navigation__link">Yazarlar</a>
             </li>
           </ul>
-        </div>
+          </nav>
 
-        <!-- SEARCH AREA -->
-        <div class="search-area" role="search">
-          <input class="search-area__input" type="text" placeholder="Ara…" aria-label="Haberlerde ara" />
-          <button class="search-area__btn" aria-label="Ara">
-            <svg viewBox="0 0 24 24">
-              <circle cx="11" cy="11" r="7" />
-              <line x1="16.5" y1="16.5" x2="22" y2="22" />
-            </svg>
-          </button>
-        </div>
+          <!-- SEARCH AREA -->
+          <div class="search-area" role="search">
+            <input class="search-area__input" type="text" placeholder="Ara…" aria-label="Haberlerde ara" />
+            <button class="search-area__btn" aria-label="Ara">
+              <svg viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" />
+                <line x1="16.5" y1="16.5" x2="22" y2="22" />
+              </svg>
+            </button>
+          </div>
 
       </div>
     </div>
-  </div>
+  </header>
   <!-- /HEADER -->
 
 
   <!-- ========= HOME PAGE ========= -->
-  <div>
-    <div class="wrapper">
-      <div class="page-layout">
 
-        <!-- ===== MAIN CONTENT ===== -->
-        <div class="page-layout__main">
+  <section class="wrapper" aria-label="Manşet ve döviz kurları">
+    <div class="page-layout">
 
-          <!-- ===== MANŞET AREA ===== -->
-          <div class="manset-area" aria-label="Manşet haberleri">
-            <h2 class="section-title">Manşet</h2>
+      <!-- ===== MAIN CONTENT ===== -->
+      <div class="page-layout__main">
 
-            <!-- MANŞET GRID -->
-            <div class="manset-grid">
+        <!-- ===== MANŞET AREA ===== -->
+        <section class="manset-area" aria-label="Manşet haberleri">
+          <h2 class="section-title">Manşet</h2>
 
-              <!-- MANŞET ITEM -->
-              <div class="manset-item">
-                <div class="manset-item__image" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <line x1="3" y1="21" x2="21" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <div class="manset-item__body">
-                  <h3 class="manset-item__title">Haber 1 başlığı buraya gelecek</h3>
-                </div>
+          <!-- MANŞET GRID -->
+          <div class="manset-grid">
+
+            <!-- MANŞET ITEM -->
+            <!-- bir section içerisindeki her bir item article olabilir.  -->
+            <article class="manset-item">
+              <div class="manset-item__image" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <line x1="3" y1="21" x2="21" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
               </div>
-
-              <div class="manset-item">
-                <div class="manset-item__image" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <line x1="3" y1="21" x2="21" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <div class="manset-item__body">
-                  <h3 class="manset-item__title">Haber 2 başlığı buraya gelecek</h3>
-                </div>
+              <div class="manset-item__body">
+                <h3 class="manset-item__title">Haber 1 başlığı buraya gelecek</h3>
               </div>
+            </article>
 
-              <div class="manset-item">
-                <div class="manset-item__image" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <line x1="3" y1="21" x2="21" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <div class="manset-item__body">
-                  <h3 class="manset-item__title">Haber 3 başlığı buraya gelecek</h3>
-                </div>
+            <article class="manset-item">
+              <div class="manset-item__image" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <line x1="3" y1="21" x2="21" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
               </div>
-
-              <div class="manset-item">
-                <div class="manset-item__image" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <line x1="3" y1="21" x2="21" y2="21" />
-                    <line x1="12" y1="17" x2="12" y2="21" />
-                  </svg>
-                </div>
-                <div class="manset-item__body">
-                  <h3 class="manset-item__title">Haber 4 başlığı buraya gelecek</h3>
-                </div>
+              <div class="manset-item__body">
+                <h3 class="manset-item__title">Haber 2 başlığı buraya gelecek</h3>
               </div>
+            </article>
 
-            </div>
-            <!-- /MANŞET GRID -->
+            <article class="manset-item">
+              <div class="manset-item__image" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <line x1="3" y1="21" x2="21" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
+              <div class="manset-item__body">
+                <h3 class="manset-item__title">Haber 3 başlığı buraya gelecek</h3>
+              </div>
+            </article>
 
-            <!-- PAGINATION -->
-            <div class="pagination" role="tablist" aria-label="Manşet sayfaları">
-              <button class="pagination__dot pagination__dot--active" aria-label="Sayfa 1"
-                aria-selected="true"></button>
-              <button class="pagination__dot" aria-label="Sayfa 2"></button>
-              <button class="pagination__dot" aria-label="Sayfa 3"></button>
-              <button class="pagination__dot" aria-label="Sayfa 4"></button>
-              <button class="pagination__dot" aria-label="Sayfa 5"></button>
-            </div>
-            <!-- /PAGINATION -->
+            <article class="manset-item">
+              <div class="manset-item__image" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <line x1="3" y1="21" x2="21" y2="21" />
+                  <line x1="12" y1="17" x2="12" y2="21" />
+                </svg>
+              </div>
+              <div class="manset-item__body">
+                <h3 class="manset-item__title">Haber 4 başlığı buraya gelecek</h3>
+              </div>
+            </article>
 
           </div>
-          <!-- /MANŞET AREA -->
+          <!-- /MANŞET GRID -->
+
+          <!-- PAGINATION -->
+          <div class="pagination" role="tablist" aria-label="Manşet sayfaları">
+            <button class="pagination__dot pagination__dot--active" aria-label="Sayfa 1" aria-selected="true"></button>
+            <button class="pagination__dot" aria-label="Sayfa 2"></button>
+            <button class="pagination__dot" aria-label="Sayfa 3"></button>
+            <button class="pagination__dot" aria-label="Sayfa 4"></button>
+            <button class="pagination__dot" aria-label="Sayfa 5"></button>
+          </div>
+          <!-- /PAGINATION -->
+
+        </section>
+        <!-- /MANŞET AREA -->
 
 
-          <!-- ===== DÖVİZ KUR BOX ===== -->
-          <div class="doviz-kur-box" aria-label="Döviz kurları">
+        <!-- ===== DÖVİZ KUR BOX ===== -->
+        <section class="doviz-kur-box" aria-label="Döviz kurları">
 
-            <!-- DÖVİZ ITEM -->
-            <div class="doviz-item">
-              <span class="doviz-item__name">Dolar</span>
-              <span class="doviz-item__value">45.50</span>
-              <span class="doviz-item__change doviz-item__change--down">%-0.2</span>
-            </div>
+          <!-- DÖVİZ ITEM -->
+          <article class="doviz-item">
+            <span class="doviz-item__name">Dolar</span>
+            <span class="doviz-item__value">45.50</span>
+            <span class="doviz-item__change doviz-item__change--down">%-0.2</span>
+          </article>
 
-            <div class="doviz-item">
-              <span class="doviz-item__name">Euro</span>
-              <span class="doviz-item__value">52.50</span>
-              <span class="doviz-item__change doviz-item__change--down">%-1.5</span>
-            </div>
+          <article class="doviz-item">
+            <span class="doviz-item__name">Euro</span>
+            <span class="doviz-item__value">52.50</span>
+            <span class="doviz-item__change doviz-item__change--down">%-1.5</span>
+          </article>
 
-            <div class="doviz-item">
-              <span class="doviz-item__name">Altın</span>
-              <span class="doviz-item__value">6.900</span>
-              <!-- elemente bir den fazla class stil tanımı yapılabilir.  -->
-              <span class="doviz-item__change doviz-item__change--up">%+1.2</span>
-            </div>
+          <article class="doviz-item">
+            <span class="doviz-item__name">Altın</span>
+            <span class="doviz-item__value">6.900</span>
+            <!-- elemente bir den fazla class stil tanımı yapılabilir.  -->
+            <span class="doviz-item__change doviz-item__change--up">%+1.2</span>
+          </article>
 
-            <div class="doviz-item">
-              <span class="doviz-item__name">Bitcoin</span>
-              <span class="doviz-item__value">80.837</span>
-              <span class="doviz-item__change doviz-item__change--up">%+0.70</span>
-            </div>
+          <article class="doviz-item">
+            <span class="doviz-item__name">Bitcoin</span>
+            <span class="doviz-item__value">80.837</span>
+            <span class="doviz-item__change doviz-item__change--up">%+0.70</span>
+          </article>
+
+        </section>
+        <!-- /DÖVİZ KUR BOX -->
+
+
+        <!-- ===== İLANLAR ===== -->
+        <section class="ilanlar-section" aria-label="İlanlar">
+          <h2 class="section-title">İlanlar</h2>
+
+          <!-- İLANLAR WRAPPER -->
+          <div class="ilanlar-wrapper">
+
+            <!-- İLAN ITEM -->
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <!-- ITEM TITLE -->
+                <p class="item-title">İlan Başlığı</p>
+                <!-- ITEM CONTENT -->
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <!-- 2. Satır -->
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
+
+            <article class="ilan-item">
+              <div class="ilan-item__photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <rect x="3" y="3" width="18" height="14" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <polyline points="21,15 16,10 5,21" />
+                </svg>
+              </div>
+              <div class="ilan-item__body">
+                <p class="item-title">İlan Başlığı</p>
+                <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
+              </div>
+            </article>
 
           </div>
-          <!-- /DÖVİZ KUR BOX -->
+          <!-- /İLANLAR WRAPPER -->
+        </section>
+        <!-- /İLANLAR -->
 
 
-          <!-- ===== İLANLAR ===== -->
-          <div class="ilanlar-section" aria-label="İlanlar">
-            <h2 class="section-title">İlanlar</h2>
+        <!-- ===== YAZARLAR ===== -->
+        <section class="yazarlar-section" aria-label="Yazarlar">
+          <h2 class="section-title">Yazarlar</h2>
 
-            <!-- İLANLAR WRAPPER -->
-            <div class="ilanlar-wrapper">
+          <!-- YAZARLAR WRAPPER -->
+          <div class="yazarlar-wrapper">
 
-              <!-- İLAN ITEM -->
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <!-- ITEM TITLE -->
-                  <p class="item-title">İlan Başlığı</p>
-                  <!-- ITEM CONTENT -->
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+            <!-- YAZAR ITEM -->
+            <article class="yazar-item">
+              <!-- YAZAR PHOTO -->
+              <div class="yazar-photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
               </div>
-
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+              <!-- YAZAR CONTENT -->
+              <div class="yazar-content">
+                <p class="yazar-content__name">Ad Soyad</p>
+                <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
               </div>
+            </article>
 
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+            <article class="yazar-item">
+              <div class="yazar-photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
               </div>
-
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+              <div class="yazar-content">
+                <p class="yazar-content__name">Ad Soyad</p>
+                <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
               </div>
+            </article>
 
-              <!-- 2. Satır -->
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+            <article class="yazar-item">
+              <div class="yazar-photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
               </div>
-
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+              <div class="yazar-content">
+                <p class="yazar-content__name">Ad Soyad</p>
+                <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
               </div>
+            </article>
 
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+            <article class="yazar-item">
+              <div class="yazar-photo" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
               </div>
-
-              <div class="ilan-item">
-                <div class="ilan-item__photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <rect x="3" y="3" width="18" height="14" rx="2" />
-                    <circle cx="8.5" cy="8.5" r="1.5" />
-                    <polyline points="21,15 16,10 5,21" />
-                  </svg>
-                </div>
-                <div class="ilan-item__body">
-                  <p class="item-title">İlan Başlığı</p>
-                  <p class="item-content">Kısa açıklama metni buraya gelecek.</p>
-                </div>
+              <div class="yazar-content">
+                <p class="yazar-content__name">Ad Soyad</p>
+                <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
               </div>
+            </article>
 
-            </div>
-            <!-- /İLANLAR WRAPPER -->
           </div>
-          <!-- /İLANLAR -->
-
-
-          <!-- ===== YAZARLAR ===== -->
-          <div class="yazarlar-section" aria-label="Yazarlar">
-            <h2 class="section-title">Yazarlar</h2>
-
-            <!-- YAZARLAR WRAPPER -->
-            <div class="yazarlar-wrapper">
-
-              <!-- YAZAR ITEM -->
-              <div class="yazar-item">
-                <!-- YAZAR PHOTO -->
-                <div class="yazar-photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <!-- YAZAR CONTENT -->
-                <div class="yazar-content">
-                  <p class="yazar-content__name">Ad Soyad</p>
-                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
-                </div>
-              </div>
-
-              <div class="yazar-item">
-                <div class="yazar-photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="yazar-content">
-                  <p class="yazar-content__name">Ad Soyad</p>
-                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
-                </div>
-              </div>
-
-              <div class="yazar-item">
-                <div class="yazar-photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="yazar-content">
-                  <p class="yazar-content__name">Ad Soyad</p>
-                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
-                </div>
-              </div>
-
-              <div class="yazar-item">
-                <div class="yazar-photo" aria-hidden="true">
-                  <svg viewBox="0 0 24 24">
-                    <circle cx="12" cy="8" r="4" />
-                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
-                  </svg>
-                </div>
-                <div class="yazar-content">
-                  <p class="yazar-content__name">Ad Soyad</p>
-                  <p class="yazar-content__bio">Yazar biyografisi ve uzmanlık alanı hakkında kısa bilgi metni.</p>
-                </div>
-              </div>
-
-            </div>
-            <!-- /YAZARLAR WRAPPER -->
-          </div>
-          <!-- /YAZARLAR -->
-
-        </div>
-        <!-- /MAIN CONTENT -->
-
-
-        <!-- ===== SIDEBAR ===== -->
-        <div class="page-layout__sidebar" aria-label="Reklam alanı">
-
-          <!-- ADVERTISEMENT AREA -->
-          <div class="advertisement advertisement--tall" aria-label="Reklam alanı 1">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span class="advertisement__label">Reklam</span>
-          </div>
-
-          <div class="advertisement advertisement--medium" aria-label="Reklam alanı 2">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span class="advertisement__label">Reklam</span>
-          </div>
-
-          <div class="advertisement advertisement--medium" aria-label="Reklam alanı 3">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            <span class="advertisement__label">Reklam</span>
-          </div>
-
-        </div>
-        <!-- /SIDEBAR (ADVERTISEMENT AREA) -->
+          <!-- /YAZARLAR WRAPPER -->
+        </section>
+        <!-- /YAZARLAR -->
 
       </div>
+      <!-- /MAIN CONTENT -->
+
+
+      <!-- ===== SIDEBAR ===== -->
+      <aside class="page-layout__sidebar" aria-label="Reklam alanı">
+
+        <!-- ADVERTISEMENT AREA -->
+        <article class="advertisement advertisement--tall" aria-label="Reklam alanı 1">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span class="advertisement__label">Reklam</span>
+        </article>
+
+        <article class="advertisement advertisement--medium" aria-label="Reklam alanı 2">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span class="advertisement__label">Reklam</span>
+        </article>
+
+        <article class="advertisement advertisement--medium" aria-label="Reklam alanı 3">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" />
+            <path d="M3 9h18M9 21V9" />
+          </svg>
+          <span class="advertisement__label">Reklam</span>
+        </article>
+
+      </aside>
+      <!-- /SIDEBAR (ADVERTISEMENT AREA) -->
+
     </div>
-  </div>
+  </section>
+
   <!-- /HOME PAGE -->
 
 
   <!-- ========= FOOTER ========= -->
-  <div class="footer" aria-label="Site alt bilgisi">
+  <footer class="footer" aria-label="Site alt bilgisi">
     <div class="wrapper">
       <div class="footer__inner">
 
@@ -1093,7 +1103,7 @@
       </div>
       <p class="footer__copy">&copy; 2026 Haber Sitesi. Tüm hakları saklıdır.</p>
     </div>
-  </div>
+  </footer>
   <!-- /FOOTER -->
 
 
