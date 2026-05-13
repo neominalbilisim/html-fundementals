@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+
+    <!DOCTYPE html>
+    <html lang="tr">
+
+    <head>
+        <meta charset="UTF-8" />
+        <title>IndexedDB Sample</title>
+    </head>
+
+    <body>
+
+        <button onclick="addUser()">Kullanıcı Ekle</button>
+        <button onclick="getUsers()">Kullanıcıları Getir</button>
+
+        <script>
+            let db;
+
+            // DB oluştur / aç
+            const request = indexedDB.open("MyDatabase", 1);
+
+            // İlk oluşturulurken çalışır
+            request.onupgradeneeded = function (event) {
+                db = event.target.result;
+
+                // users store oluştur
+                const store = db.createObjectStore("users", {
+                    keyPath: "id",
+                    autoIncrement: true
+                });
+
+                // index örneği
+                store.createIndex("name", "name", { unique: false });
+
+                console.log("DB oluşturuldu");
+            };
+
+            // Başarılı bağlantı
+            request.onsuccess = function (event) {
+                db = event.target.result;
+                console.log("DB hazır");
+            };
+
+            // Hata
+            request.onerror = function (event) {
+                console.error("DB Hatası:", event.target.error);
+            };
+
+            // Veri ekleme
+            function addUser() {
+                // veri tabanı işlemi
+                const transaction = db.transaction(["users"], "readwrite");
+                const store = transaction.objectStore("users");
+
+                // veritabanı nesnesi kayıt
+                const user = {
+                    name: "Ahmet",
+                    age: 25
+                };
+
+                // bu kaydı collection içine ekle
+                const addRequest = store.add(user);
+
+                // eğer kayıt başarılı ise mesajı console göster
+                addRequest.onsuccess = () => {
+                    console.log("Kullanıcı eklendi");
+                };
+
+                // hata mesajını consoleda göster
+                addRequest.onerror = () => {
+                    console.log("Ekleme hatası");
+                };
+            }
+
+            // Tüm kullanıcıları getir
+            function getUsers() {
+                // veritabanına bağlan ve users store'una eriş
+                const transaction = db.transaction(["users"], "readonly");
+                const store = transaction.objectStore("users");
+
+                // tüm kayıtları al
+                const request = store.getAll();
+
+                // eğer veri alma başarılı ise kullanıcıları console göster
+                request.onsuccess = () => {
+                    console.log("Kullanıcılar:", request.result);
+                };
+
+                // hata 
+                request.onerror = () => {
+                    console.log("Okuma hatası");
+                };
+            }
+        </script>
+
+    </body>
+
+    </html>
+
+</body>
+
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>SVG Up Button</title>
+
+    <style>
+        body {
+            margin: 0;
+            height: 3000px;
+            background:
+                linear-gradient(180deg,
+                    #0f172a,
+                    #1e293b);
+            font-family: Arial;
+        }
+
+        /* BUTTON */
+
+        #scrollTopBtn {
+
+            position: fixed;
+
+            right: 30px;
+            bottom: 30px;
+
+            width: 64px;
+            height: 64px;
+
+            border: none;
+            border-radius: 50%;
+
+            background: #2563eb;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 10px 30px rgba(37, 99, 235, 0.4);
+
+            opacity: 0;
+            visibility: hidden;
+
+            transform:
+                translateY(20px) scale(0.9);
+
+            transition:
+                all 0.3s ease;
+        }
+
+        /* ACTIVE */
+
+        #scrollTopBtn.show {
+
+            opacity: 1;
+            visibility: visible;
+
+            transform:
+                translateY(0) scale(1);
+        }
+
+        /* HOVER */
+
+        #scrollTopBtn:hover {
+
+            transform:
+                translateY(-5px) scale(1.08);
+
+            background: #3b82f6;
+
+            box-shadow:
+                0 15px 40px rgba(59, 130, 246, 0.6);
+        }
+
+        /* SVG */
+
+        #scrollTopBtn svg {
+
+            width: 28px;
+            height: 28px;
+
+            stroke: white;
+            stroke-width: 3;
+
+            fill: none;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        #scrollTopBtn:hover svg {
+            transform: translateY(-3px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="scrollTopBtn">
+
+        <!-- ok şeklini svg ile resim kullanmadan embed gömülü bir şekilde htmlde kullandık. -->
+
+        <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+
+            <path d="M6 15l6-6 6 6" />
+
+        </svg>
+
+    </button>
+
+    <script>
+
+        const btn =
+            document.getElementById(
+                "scrollTopBtn"
+            );
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                if (window.scrollY > 300) {
+
+                    btn.classList.add("show");
+
+                } else {
+
+                    btn.classList.remove("show");
+                }
+            }
+        );
+
+        btn.addEventListener(
+            "click",
+            () => {
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>

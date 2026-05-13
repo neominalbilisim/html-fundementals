@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Canvas Dashboard</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #0f172a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial;
+        }
+
+        .dashboard {
+            background: #111827;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow:
+                0 0 40px rgba(0, 0, 0, 0.5);
+        }
+
+        canvas {
+            border-radius: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="dashboard">
+        <canvas id="chart" width="900" height="500"></canvas>
+    </div>
+
+    <script>
+
+        const canvas = document.getElementById("chart");
+        const ctx = canvas.getContext("2d");
+
+
+        const data = [120, 190, 90, 240, 160, 210, 180];
+        const labels = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz"];
+
+        let progress = 0;
+
+        function drawBackground() {
+
+            ctx.fillStyle = "#111827";
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+        }
+
+        function drawGrid() {
+
+            ctx.strokeStyle = "rgba(255,255,255,0.08)";
+            ctx.lineWidth = 1;
+
+            for (let i = 0; i < 6; i++) {
+
+                let y = 80 + i * 60;
+
+                ctx.beginPath();
+                ctx.moveTo(80, y);
+                ctx.lineTo(canvas.width - 40, y);
+                ctx.stroke();
+            }
+        }
+
+        function drawTitle() {
+
+            ctx.fillStyle = "white";
+            ctx.font = "bold 28px Arial";
+            ctx.fillText("Satış Dashboard", 40, 45);
+
+            ctx.fillStyle = "#94a3b8";
+            ctx.font = "16px Arial";
+            ctx.fillText("2026 İlk 6 Ay", 40, 70);
+        }
+
+        function drawBars() {
+
+            const barWidth = 70;
+            const gap = 50;
+            const startX = 100;
+            const baseY = 430;
+
+            data.forEach((value, index) => {
+
+                const animatedHeight = value * progress;
+
+                const x =
+                    startX +
+                    index * (barWidth + gap);
+
+                const y =
+                    baseY -
+                    animatedHeight;
+
+                const gradient =
+                    ctx.createLinearGradient(
+                        0, y, 0, baseY
+                    );
+
+                gradient.addColorStop(0, "#38bdf8");
+                gradient.addColorStop(1, "#2563eb");
+
+                ctx.fillStyle = gradient;
+
+                roundRect(
+                    ctx,
+                    x,
+                    y,
+                    barWidth,
+                    animatedHeight,
+                    12
+                );
+
+                ctx.fill();
+
+                ctx.fillStyle = "white";
+                ctx.font = "15px Arial";
+                ctx.textAlign = "center";
+
+                ctx.fillText(
+                    value,
+                    x + barWidth / 2,
+                    y - 10
+                );
+
+                ctx.fillStyle = "#94a3b8";
+
+                ctx.fillText(
+                    labels[index],
+                    x + barWidth / 2,
+                    baseY + 30
+                );
+
+            });
+
+        }
+
+        function roundRect(ctx, x, y, w, h, r) {
+
+            ctx.beginPath();
+
+            ctx.moveTo(x + r, y);
+
+            ctx.lineTo(x + w - r, y);
+            ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+
+            ctx.lineTo(x + w, y + h - r);
+            ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+
+            ctx.lineTo(x + r, y + h);
+            ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+
+            ctx.lineTo(x, y + r);
+            ctx.quadraticCurveTo(x, y, x + r, y);
+
+            ctx.closePath();
+        }
+
+        function animate() {
+
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            drawBackground();
+            drawGrid();
+            drawTitle();
+            drawBars();
+
+            if (progress < 1) {
+                progress += 0.02;
+            }
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+
+    </script>
+
+</body>
+
+</html>

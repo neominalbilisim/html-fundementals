@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <!-- Server-Sent Events - One Way Messaging (Genel olarak, Canlı Dövüz Kuru hesaplarını değişimi, Canlı İstatistikler, İdea Siteleri Maç oranlarının Canlı değişimi, Havayolu şirketleri uçakların konum güncellemeleri, karayolu otobüs takip tracking kullanılır) -->
+
+    <!-- verileri değişen bir sunucuya ihtiyaç var ona bağlanıp veri alıyoruz. sonra ekran güncelleniyor. -->
+
+    <!-- https://www.w3schools.com/html/html5_serversentevents.asp -->
+
+
+    <h1>HTML Geolocation</h1>
+    <p>Click the button to get your coordinates.</p>
+
+    <button onclick="getLocation()">Try It</button>
+
+    <p id="demo"></p>
+
+
+    <!-- Web Storage API : Tarayıcı üzerinden kullanıcıların oturumuna özgü bilgileri saklamak için kullanılır. localStorage (Kalıcı bilgiler), sessionStorage (Oturum boyunca geçerli bilgiler), cookie (çerezler -> web sayfasında izin verilen oturum bilgileri) -->
+    <!-- web veya localdb https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API -->
+
+
+
+    <button onclick="localStorage.setItem('data','test')">LocalStorage Sample</button>
+    <button onclick="alert(localStorage.getItem('data'))">LocalStorage Get Item</button>
+    <button onclick="localStorage.removeItem('data')">LocalStorage Remove Item</button>
+
+
+    <script>
+        const x = document.getElementById("demo");
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                // tarayıcı üzerinden konum bilgisi alma işlemi yapılıyor. kullanıcı izin vermesi gerekiyor.
+                navigator.geolocation.getCurrentPosition(success, error);
+            } else {
+                x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+
+        // eğer internet bağlantısında bir sorun yoksa konum bilgisi başarıyla alınırsa success fonksiyonu çalışır. eğer bir sorun varsa error fonksiyonu çalışır.
+        function success(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude +
+                "<br>Longitude: " + position.coords.longitude;
+        }
+
+        // konum bilgileri başarısız olursa bu fonksiyon çalışır ve kullanıcıya bir uyarı mesajı gösterilir.
+        function error() {
+            alert("Sorry, no position available.");
+        }
+    </script>
+
+
+
+
+</body>
+
+</html>
