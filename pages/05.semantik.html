@@ -663,6 +663,7 @@
   <!-- footer: alt bilgi alanı için kullanılır -->
   <!-- aside: ana içeriğe destekleyici içerik için kullanılır (reklam alanları, popüler haberler, sosyal medya bağlantıları gibi) -->
 
+  <!-- semantic tagler, mate tagler kadar seo açısından önemli yapılardır. -->
 
   <!-- ========= HEADER ========= -->
   <header aria-label="Ana Header">
@@ -705,18 +706,18 @@
               <a href="#" class="navigation__link">Yazarlar</a>
             </li>
           </ul>
-          </nav>
+        </nav>
 
-          <!-- SEARCH AREA -->
-          <div class="search-area" role="search">
-            <input class="search-area__input" type="text" placeholder="Ara…" aria-label="Haberlerde ara" />
-            <button class="search-area__btn" aria-label="Ara">
-              <svg viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" />
-                <line x1="16.5" y1="16.5" x2="22" y2="22" />
-              </svg>
-            </button>
-          </div>
+        <!-- SEARCH AREA -->
+        <div class="search-area" role="search">
+          <input class="search-area__input" type="text" placeholder="Ara…" aria-label="Haberlerde ara" />
+          <button class="search-area__btn" aria-label="Ara">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="7" />
+              <line x1="16.5" y1="16.5" x2="22" y2="22" />
+            </svg>
+          </button>
+        </div>
 
       </div>
     </div>
@@ -1097,6 +1098,12 @@
           <p class="address-div__label">Adres</p>
           <address class="address-div__text" style="font-style:normal;">
             Örnek Mah. Haber Cad. No:1, İstanbul
+
+            &copy; 2026 Haber Sitesi
+
+            <!-- turklisrası tanımoı değil &euro, &dolar sign var, alt + t ile yaparız -->
+            <!-- ₺ -->
+
           </address>
         </div>
 

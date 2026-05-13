@@ -13,7 +13,7 @@
 
     <!-- formlar bilgi toplamak için kullanılır -->
 
-    <input type="datetime-local" placeholder="Date">
+    <!-- <input type="datetime-local" placeholder="Date">
 
     <input type="color" placeholder="Color">
 
@@ -23,20 +23,102 @@
 
     <input type="file" placeholder="File">
 
+    <input type="range" placeholder="Range">
 
-    <form action="submit.php" method="post">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name"><br><br>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email"><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
-        <input type="checkbox" id="subscribe" name="subscribe" value="yes">
-        <label for="subscribe">Subscribe to newsletter</label><br><br>
+    <input type="search" placeholder="Search"> -->
 
-        <!-- formu çalıştırmak için submit buttona ihtiyaç vardır, formu tetikleyen şey submit buttondur -->
-        <input type="submit" value="Submit">
-    </form>
+    <!-- Validations -> Validasyon : Formdan girilen değerleri kontrol etmek için kullanılır. Belirli bir doğrulama kuralı belirleyerek formun gönderilmesini sağlar. -->
+
+    <!-- Ön yüz kullanan web kullanıcılarının servise veri gönderirken belirli doğrulama kurallarını uygulamalarını sağlar. Yanlış veri gönderimi engellenir. Gereksiz yere yanlış web isteğiş atılmaz. -->
+
+    <legend>Form Elementleri
+
+        <!-- https:// url https ile başlamalı -->
+        <!-- telefon xxx-xxx-xxxx formatında yazılmalı -->
+        <!-- required tanımlı alanlar bu formda zorunlu alanlardır boş bırakılamaz -->
+        <!-- validayonların çalışması için ise required etiketi önemlidir. -->
+        <!-- default basit validayonlardır. html5 ile birlikte gelmiştir.  -->
+        <!-- tarayıcıdan tarayıcıya değişkenlik gösterirler -->
+
+
+        <form>
+            <input type="url" pattern="https://.*" placeholder="url" required>
+            <br>
+            <input type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="Phone" required>
+            <br>
+            <input type="number" min="1" max="10" placeholder="Number" required>
+            <br>
+            <input type="email" placeholder="Email" required>
+            <br>
+            <input type="password" placeholder="Password" required>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <br>
+
+
+    <legend>Form Elementleri 2
+
+
+        <form method="post" action="#" id="form" action="submit.php" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea><br><br>
+
+            <input type="checkbox" id="subscribe" name="subscribe" value="yes" checked> Subscribe to newsletter
+
+
+            <!-- checked yazılanlar ekranda seçili olarak gelir -->
+            <!-- name alanı aynı ise name alanı aynı olan radio buttonlarda sadece bir seçilebilir.  -->
+
+            <br><br>
+            <label>Gender: </label>
+            <input type="radio" id="male" name="gender" value="yes" checked> Male
+            <input type="radio" id="female" name="gender" value="no"> Female
+
+
+
+            <!-- formu çalıştırmak için submit buttona ihtiyaç vardır, formu tetikleyen şey submit buttondur -->
+            <input type="submit" value="Submit">
+        </form>
+    </legend>
+    <script>
+
+        // Form bilgilerini alıp gönderebilmek için sadece HTML yeterli değildir, JavaScript kullanarak form verilerini alıp işleyebiliriz. Aşağıda, formun submit olayını dinleyerek form verilerini konsola yazdıran bir örnek bulunmaktadır:
+
+
+        document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault(); // Formun varsayılan gönderimini engeller
+
+            // Form verilerini al
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var message = document.getElementById("message").value;
+            var subscribe = document.getElementById("subscribe").checked;
+            var gender = document.querySelector('input[name="gender"]:checked').value;
+
+            console.log("Name: " + name);
+            console.log("Email: " + email);
+            console.log("Message: " + message);
+            console.log("Subscribe: " + subscribe);
+            console.log("Gender: " + gender);
+
+            document.getElementById("form").reset(); // Formu sıfırlar
+
+        });
+
+
+
+
+    </script>
+
+
+
+
 
 </body>
 
